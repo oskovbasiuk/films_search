@@ -1,0 +1,11 @@
+<div *ngIf="fullInfo">
+  <div><img [src]="fullInfo.Poster" alt="" /></div>
+  <div>
+    <p>{{ fullInfo.Title }}</p>
+    <p>{{ fullInfo.Year }}</p>
+    <p>{{ fullInfo.Genre }}</p>
+  </div>
+</div>
+<div>
+  <app-fav-btn [imdbID]="imdbID"></app-fav-btn>
+</div>

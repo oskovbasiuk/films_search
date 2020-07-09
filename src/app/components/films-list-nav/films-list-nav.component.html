@@ -1,0 +1,36 @@
+<button
+  (click)="page > 1 && pageChange.emit(page - 1)"
+  [disabled]="btnDisabled"
+>
+  &lt; prev
+</button>
+<button
+  *ngIf="page > 1"
+  (click)="pageChange.emit(1)"
+  [disabled]="btnDisabled || page == 1"
+>
+  First
+</button>
+<input
+  type="number"
+  [formControl]="pageInput"
+  (keyup)="
+    $event.keyCode == 13 &&
+      !pageInput.invalid &&
+      pageChange.emit($event.target.value)
+  "
+  [value]="page"
+/>
+<button
+  *ngIf="page < maxPage"
+  (click)="pageChange.emit(maxPage)"
+  [disabled]="btnDisabled"
+>
+  Last
+</button>
+<button
+  (click)="page < maxPage && pageChange.emit(page + 1)"
+  [disabled]="btnDisabled || page == maxPage"
+>
+  next ({{ maxPage - page }}) &gt;
+</button>

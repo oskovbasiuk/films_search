@@ -1,0 +1,15 @@
+<app-search-bar
+  (search)="searchFilms($event)"
+  (titleChange)="searchTitle = $event"
+></app-search-bar>
+<app-films-list
+  *ngIf="searchResults.length > 0"
+  [filmsList]="searchResults"
+></app-films-list>
+
+<app-films-list-nav
+  [page]="currentPage"
+  (pageChange)="pageChange($event)"
+  [maxPage]="totalPages"
+  [btnDisabled]="!totalPages"
+></app-films-list-nav>
