@@ -1,19 +1,25 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-
+import { ActivatedRoute } from "@angular/router";
+import { SearchService } from "src/app/services/search.service";
 @Component({
   selector: "app-film-page",
   templateUrl: "./film-page.component.html",
   styleUrls: ["./film-page.component.css"],
 })
 export class FilmPageComponent implements OnInit {
-  constructor(private router: Router) {}
-  fullFilmInfo;
+  imdbID: string;
+  constructor(
+    private route: ActivatedRoute,
+    private searchService: SearchService
+  ) {}
+  fullPlotFilmInfo;
   ngOnInit(): void {
-    if (!history.state.data) {
-      this.router.navigateByUrl("");
-    } else {
-      this.fullFilmInfo = history.state.data;
-    }
+    this.imdbID = this.route.snapshot.paramMap.get("id");
+    this.searchService
+      .getExactItemByID(this.imdbID, "full")
+      .subscribe((res: any) => {
+        this.fullPlotFilmInfo = res;
+        console.log(this.fullPlotFilmInfo);
+      });
   }
 }

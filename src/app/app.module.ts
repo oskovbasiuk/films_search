@@ -12,9 +12,8 @@ import { FilmPageComponent } from "./components/film-page/film-page.component";
 import { MainPageComponent } from "./components/main-page/main-page.component";
 import { FavouritesComponent } from "./components/favourites/favourites.component";
 import { HeaderComponent } from "./components/header/header.component";
-import { FilmsListNavComponent } from "./components/films-list-nav/films-list-nav.component";
 import { FavBtnComponent } from "./components/fav-btn/fav-btn.component";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
   declarations: [
@@ -26,7 +25,6 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     MainPageComponent,
     FavouritesComponent,
     HeaderComponent,
-    FilmsListNavComponent,
     FavBtnComponent,
   ],
   imports: [
@@ -35,7 +33,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

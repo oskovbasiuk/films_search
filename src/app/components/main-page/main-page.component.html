@@ -1,15 +1,32 @@
-<app-search-bar
-  (search)="searchFilms($event)"
-  (titleChange)="searchTitle = $event"
-></app-search-bar>
-<app-films-list
-  *ngIf="searchResults.length > 0"
-  [filmsList]="searchResults"
-></app-films-list>
+<div class="px-3">
+  <app-search-bar
+    (search)="searchFilms($event)"
+    (titleChange)="searchTitle = $event"
+  ></app-search-bar>
+  <app-films-list
+    *ngIf="
+      searchResults.Response && !searchResults.Error;
+      else nothingToDisplay
+    "
+    [filmsList]="searchResults.Search"
+  ></app-films-list>
 
-<app-films-list-nav
-  [page]="currentPage"
-  (pageChange)="pageChange($event)"
-  [maxPage]="totalPages"
-  [btnDisabled]="!totalPages"
-></app-films-list-nav>
+  <ng-template #nothingToDisplay>
+    <h4 *ngIf="searchResults.Error">
+      {{ searchResults.Error }}
+    </h4>
+    <h4 *ngIf="currentPage == 0">
+      Type any title first :)
+    </h4>
+  </ng-template>
+
+  <ngb-pagination
+    class="d-flex justify-content-end"
+    [collectionSize]="searchResults.totalPages"
+    [pageSize]="1"
+    [page]="currentPage"
+    (pageChange)="pageChange($event)"
+    [maxSize]="5"
+    [boundaryLinks]="true"
+  ></ngb-pagination>
+</div>

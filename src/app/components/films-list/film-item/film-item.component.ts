@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, HostListener } from "@angular/core";
-import { FilmsSearchService } from "src/app/services/film-search.service";
+import { SearchService } from "src/app/services/search.service";
 import { Router } from "@angular/router";
 
 @Component({
@@ -10,19 +10,17 @@ import { Router } from "@angular/router";
 export class FilmItemComponent implements OnInit {
   @Input() imdbID;
   @HostListener("click") onClick() {
-    this.navigateToFullPage();
+    this.router.navigate(["full_info", this.imdbID]);
   }
-  constructor(
-    private searchService: FilmsSearchService,
-    private router: Router
-  ) {}
-  fullInfo;
-  navigateToFullPage() {
-    this.router.navigate(["full_info"], { state: { data: this.fullInfo } });
-  }
+  shortPlotFullInfo;
+
+  constructor(private searchService: SearchService, private router: Router) {}
+
   ngOnInit(): void {
-    this.searchService.getExactFilm(this.imdbID).subscribe((res: any) => {
-      this.fullInfo = res;
-    });
+    this.searchService
+      .getExactItemByID(this.imdbID, "short")
+      .subscribe((res: any) => {
+        this.shortPlotFullInfo = res;
+      });
   }
 }

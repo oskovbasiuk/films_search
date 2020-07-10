@@ -6,8 +6,8 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./favourites.component.css"],
 })
 export class FavouritesComponent implements OnInit {
+  favourites: any;
   constructor() {}
-  favourites = [];
   ngOnInit(): void {
     const favString = localStorage.getItem("favourites");
     let favourites = [];

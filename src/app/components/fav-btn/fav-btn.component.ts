@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from "@angular/core";
 })
 export class FavBtnComponent implements OnInit {
   @Input() imdbID;
-  isFavourite;
+  isFavourite: boolean;
 
   constructor() {}
 

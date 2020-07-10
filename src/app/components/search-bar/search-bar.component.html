@@ -1,11 +1,14 @@
-<div>
+<div class="input-group mb-3">
   <input
+    class="form-control"
     type="text"
     [formControl]="title"
     (keyup)="$event.keyCode == 13 && searchClick()"
     placeholder="Title..."
   />
-
-  <button (click)="searchClick()">Search</button>
-  <hr />
+  <div class="input-group-append">
+    <button (click)="searchClick()" class="btn btn-outline-primary">
+      Search
+    </button>
+  </div>
 </div>

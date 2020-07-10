@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FilmsSearchService } from "src/app/services/film-search.service";
-import { FormControl, Validators } from "@angular/forms";
+import { SearchService } from "src/app/services/search.service";
 
 @Component({
   selector: "app-main-page",
@@ -8,16 +7,15 @@ import { FormControl, Validators } from "@angular/forms";
   styleUrls: ["./main-page.component.css"],
 })
 export class MainPageComponent implements OnInit {
-  constructor(private searchService: FilmsSearchService) {}
-  searchResults: any = [];
+  constructor(private searchService: SearchService) {}
+  searchResults: any = {};
   searchTitle: string;
   currentPage: number = 0;
-  totalPages: number = 0;
 
   ngOnInit(): void {}
 
   pageChange(page) {
-    if (this.searchResults.length > 0) {
+    if (this.searchResults) {
       this.currentPage = Number(page);
       this.searchFilms({
         title: this.searchTitle,
@@ -28,15 +26,15 @@ export class MainPageComponent implements OnInit {
   }
 
   searchFilms({ title, page, paginationRequest }) {
-    this.searchResults = [];
+    this.searchResults = {};
     if (!paginationRequest) {
       this.currentPage = page;
     }
     this.searchService
       .searchByTitle(title, this.currentPage)
       .subscribe((res: any) => {
-        this.searchResults = res.Search;
-        this.totalPages = Math.ceil(res.totalResults / 10);
+        this.searchResults = res;
+        this.searchResults.totalPages = Math.ceil(res.totalResults / 10);
       });
   }
 }

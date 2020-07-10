@@ -14,7 +14,7 @@ const routes: Routes = [
     component: FavouritesComponent,
   },
   {
-    path: "full_info",
+    path: "full_info/:id",
     component: FilmPageComponent,
   },
 ];

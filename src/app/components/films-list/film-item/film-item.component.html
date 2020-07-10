@@ -1,11 +1,24 @@
-<div *ngIf="fullInfo">
-  <div><img [src]="fullInfo.Poster" alt="" /></div>
-  <div>
-    <p>{{ fullInfo.Title }}</p>
-    <p>{{ fullInfo.Year }}</p>
-    <p>{{ fullInfo.Genre }}</p>
+<div *ngIf="shortPlotFullInfo; else spinner" class="row">
+  <div class="col-sm-12 col-md-6 col-lg-2" style="max-width: 240px;">
+    <img
+      *ngIf="shortPlotFullInfo.Poster"
+      [src]="shortPlotFullInfo.Poster"
+      alt="no image"
+      class="mw-100"
+    />
+  </div>
+
+  <p class="col-lg-2">{{ shortPlotFullInfo.Title }}</p>
+  <p class="col-lg-1">{{ shortPlotFullInfo.Year }}</p>
+  <p class="col-lg-2">{{ shortPlotFullInfo.Genre }}</p>
+  <p class="col-lg-4">{{ shortPlotFullInfo.Plot }}</p>
+
+  <div class="col-lg-1">
+    <app-fav-btn [imdbID]="imdbID" class="float-right"></app-fav-btn>
   </div>
 </div>
-<div>
-  <app-fav-btn [imdbID]="imdbID"></app-fav-btn>
-</div>
+<ng-template #spinner>
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</ng-template>

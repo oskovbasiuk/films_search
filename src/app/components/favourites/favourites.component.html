@@ -1,4 +1,9 @@
-<app-films-list
-  *ngIf="favourites.length > 0"
-  [filmsList]="favourites"
-></app-films-list>
+<div class="px-3">
+  <app-films-list
+    [filmsList]="favourites"
+    *ngIf="favourites.length > 0; else nothingToDisplay"
+  ></app-films-list>
+  <ng-template #nothingToDisplay>
+    <h3>Firstly, add something to favourites :)</h3>
+  </ng-template>
+</div>
