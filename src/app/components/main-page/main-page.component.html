@@ -4,10 +4,7 @@
     (titleChange)="searchTitle = $event"
   ></app-search-bar>
   <app-films-list
-    *ngIf="
-      searchResults.Response && !searchResults.Error;
-      else nothingToDisplay
-    "
+    *ngIf="currentPage != 0 && !searchResults.Error; else nothingToDisplay"
     [filmsList]="searchResults.Search"
   ></app-films-list>
 
@@ -21,12 +18,13 @@
   </ng-template>
 
   <ngb-pagination
+    *ngIf="searchResults.totalPages"
     class="d-flex justify-content-end"
     [collectionSize]="searchResults.totalPages"
-    [pageSize]="1"
     [page]="currentPage"
     (pageChange)="pageChange($event)"
-    [maxSize]="5"
+    [maxSize]="3"
+    [rotate]="true"
     [boundaryLinks]="true"
   ></ngb-pagination>
 </div>

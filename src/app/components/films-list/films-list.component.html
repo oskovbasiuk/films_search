@@ -1,5 +1,5 @@
 <div
-  *ngIf="filmsList.length > 0; else loading"
+  *ngIf="filmsList && filmsList.length > 0; else loading"
   class="list-group list-group-flush mb-3"
 >
   <app-film-item
@@ -8,10 +8,6 @@
     [imdbID]="film.imdbID"
   ></app-film-item>
 </div>
-
-<ng-template *ngIf="filmsList.error">
-  {{ filmsList.error }}
-</ng-template>
 
 <ng-template #loading>
   <div class="d-flex justify-content-center">
