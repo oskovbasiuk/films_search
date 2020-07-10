@@ -1,4 +1,8 @@
-<div *ngIf="shortPlotFullInfo; else spinner" class="row">
+<div
+  *ngIf="shortPlotFullInfo; else spinner"
+  class="row"
+  [routerLink]="['full_info', imdbID]"
+>
   <div class="col-sm-12 col-md-6 col-lg-2" style="max-width: 240px;">
     <img
       *ngIf="shortPlotFullInfo.Poster"

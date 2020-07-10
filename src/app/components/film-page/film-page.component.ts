@@ -19,7 +19,6 @@ export class FilmPageComponent implements OnInit {
       .getExactItemByID(this.imdbID, "full")
       .subscribe((res: any) => {
         this.fullPlotFilmInfo = res;
-        console.log(this.fullPlotFilmInfo);
       });
   }
 }

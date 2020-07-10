@@ -1,6 +1,5 @@
-import { Component, OnInit, Input, HostListener } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { SearchService } from "src/app/services/search.service";
-import { Router } from "@angular/router";
 
 @Component({
   selector: "app-film-item",
@@ -9,12 +8,10 @@ import { Router } from "@angular/router";
 })
 export class FilmItemComponent implements OnInit {
   @Input() imdbID;
-  @HostListener("click") onClick() {
-    this.router.navigate(["full_info", this.imdbID]);
-  }
+
   shortPlotFullInfo;
 
-  constructor(private searchService: SearchService, private router: Router) {}
+  constructor(private searchService: SearchService) {}
 
   ngOnInit(): void {
     this.searchService
